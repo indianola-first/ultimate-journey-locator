@@ -1,0 +1,61 @@
+<!-- Search Form Component -->
+<div class="search-form-container">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Find Locations Near You</h2>
+
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <i class="bi bi-geo-alt"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="zipCode"
+                placeholder="Enter your 5-digit zip code"
+                maxlength="5"
+                (keypress)="onKeyPress($event)"
+                [class.is-invalid]="hasZipCodeError()"
+                [disabled]="isSubmitting"
+                autocomplete="postal-code"
+              />
+              <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="searchForm.invalid || isSubmitting"
+              >
+                <span *ngIf="!isSubmitting">
+                  <i class="bi bi-search"></i>
+                  Search
+                </span>
+                <span *ngIf="isSubmitting">
+                  <span
+                    class="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  Searching...
+                </span>
+              </button>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="hasZipCodeError()" class="invalid-feedback d-block">
+              {{ getZipCodeErrorMessage() }}
+            </div>
+
+            <!-- Help Text -->
+            <div class="form-text text-center">
+              <small class="text-muted">
+                Enter your 5-digit US zip code to find nearby locations
+              </small>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

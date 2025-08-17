@@ -1,0 +1,591 @@
+/* ========================================
+   LOCATION FINDER - GLOBAL STYLES
+   ======================================== */
+
+/* Bootstrap 5 Integration */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css');
+
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ======================================== */
+:root {
+  /* Professional WordPress Color Scheme */
+  --primary-color: #0073aa;
+  --primary-dark: #005a87;
+  --primary-light: #4a9fd8;
+  --secondary-color: #23282d;
+  --secondary-light: #32373c;
+  --accent-color: #f7f7f7;
+  --accent-dark: #e5e5e5;
+  --success-color: #46b450;
+  --warning-color: #ffb900;
+  --danger-color: #dc3232;
+  --info-color: #00a0d2;
+
+  /* Text Colors */
+  --text-primary: #23282d;
+  --text-secondary: #646970;
+  --text-muted: #8c8f94;
+  --text-light: #f6f7f7;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f7f7;
+  --bg-tertiary: #f0f0f1;
+  --bg-dark: #23282d;
+
+  /* Border Colors */
+  --border-color: #dcdcde;
+  --border-light: #e5e5e5;
+  --border-dark: #8c8f94;
+
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.15);
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  /* Border Radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+
+  /* Typography */
+  --font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-heading: var(--font-family-base);
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --line-height-base: 1.5;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.25s ease-in-out;
+  --transition-slow: 0.35s ease-in-out;
+
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ========================================
+   IFRAME EMBEDDING STYLES
+   ======================================== */
+html,
+body {
+  /* Ensure proper iframe sizing */
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Container for iframe embedding */
+.iframe-container {
+  width: 100%;
+  min-height: 400px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Ensure content fits within iframe constraints */
+.app-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.75rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1.125rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ========================================
+   BOOTSTRAP OVERRIDES
+   ======================================== */
+/* Primary Button Overrides */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--text-light);
+  font-weight: 500;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-base);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: var(--text-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--shadow-medium);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px var(--shadow-medium);
+}
+
+/* Secondary Button Overrides */
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--text-light);
+  font-weight: 500;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-base);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--secondary-light);
+  border-color: var(--secondary-light);
+  color: var(--text-light);
+}
+
+/* Form Control Overrides */
+.form-control {
+  border-color: var(--border-color);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 115, 170, 0.25);
+}
+
+/* Card Overrides */
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 2px 4px var(--shadow-light);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* Alert Overrides */
+.alert {
+  border-radius: var(--border-radius-md);
+  border: none;
+  font-weight: 500;
+}
+
+.alert-primary {
+  background-color: rgba(0, 115, 170, 0.1);
+  color: var(--primary-dark);
+}
+
+.alert-success {
+  background-color: rgba(70, 180, 80, 0.1);
+  color: var(--success-color);
+}
+
+.alert-warning {
+  background-color: rgba(255, 185, 0, 0.1);
+  color: #856404;
+}
+
+.alert-danger {
+  background-color: rgba(220, 50, 50, 0.1);
+  color: var(--danger-color);
+}
+
+/* Badge Overrides */
+.badge {
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   ======================================== */
+
+/* Extra Small devices (phones, 320px and up) */
+@media (min-width: 320px) {
+  .app-container {
+    padding: var(--spacing-sm);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.375rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .form-control {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm);
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .app-container {
+    padding: var(--spacing-md);
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.375rem;
+  }
+
+  .btn {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .form-control {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .app-container {
+    padding: var(--spacing-lg);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+  }
+
+  .form-control {
+    padding: var(--spacing-md);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .app-container {
+    padding: var(--spacing-xl);
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .app-container {
+    padding: var(--spacing-xxl);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2.25rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+}
+
+/* ========================================
+   IFRAME SPECIFIC RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+/* Very small iframe (300px and below) */
+@media (max-width: 300px) {
+  .app-container {
+    padding: var(--spacing-xs);
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+  h2 {
+    font-size: 1.125rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .form-control {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs);
+  }
+
+  .card {
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+/* Small iframe (400px and below) */
+@media (max-width: 400px) {
+  .app-container {
+    padding: var(--spacing-sm);
+  }
+
+  h1 {
+    font-size: 1.375rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  .btn {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm);
+  }
+
+  .form-control {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm);
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.text-primary {
+  color: var(--primary-color) !important;
+}
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.bg-primary {
+  background-color: var(--bg-primary) !important;
+}
+.bg-secondary {
+  background-color: var(--bg-secondary) !important;
+}
+.bg-tertiary {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.border-light {
+  border-color: var(--border-color) !important;
+}
+
+.shadow-light {
+  box-shadow: 0 2px 4px var(--shadow-light) !important;
+}
+.shadow-medium {
+  box-shadow: 0 4px 8px var(--shadow-medium) !important;
+}
+.shadow-dark {
+  box-shadow: 0 8px 16px var(--shadow-dark) !important;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+/* Focus styles for keyboard navigation */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  z-index: var(--z-fixed);
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #000080;
+    --text-primary: #000000;
+    --border-color: #000000;
+  }
+
+  .card {
+    border: 2px solid var(--border-color);
+  }
+
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .app-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .btn,
+  .form-control {
+    border: 1px solid #000;
+  }
+
+  .card {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+
+  .shadow-light,
+  .shadow-medium,
+  .shadow-dark {
+    box-shadow: none !important;
+  }
+}

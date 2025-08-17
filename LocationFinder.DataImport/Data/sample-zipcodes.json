@@ -1,0 +1,142 @@
+[
+  {
+    "zipCodeValue": "10001",
+    "city": "New York",
+    "state": "NY",
+    "latitude": 40.7505,
+    "longitude": -73.9965
+  },
+  {
+    "zipCodeValue": "10002",
+    "city": "New York",
+    "state": "NY",
+    "latitude": 40.7168,
+    "longitude": -73.9861
+  },
+  {
+    "zipCodeValue": "10003",
+    "city": "New York",
+    "state": "NY",
+    "latitude": 40.7312,
+    "longitude": -73.9887
+  },
+  {
+    "zipCodeValue": "10004",
+    "city": "New York",
+    "state": "NY",
+    "latitude": 40.6892,
+    "longitude": -74.0145
+  },
+  {
+    "zipCodeValue": "10005",
+    "city": "New York",
+    "state": "NY",
+    "latitude": 40.7063,
+    "longitude": -74.0086
+  },
+  {
+    "zipCodeValue": "20001",
+    "city": "Washington",
+    "state": "DC",
+    "latitude": 38.9097,
+    "longitude": -77.0169
+  },
+  {
+    "zipCodeValue": "20002",
+    "city": "Washington",
+    "state": "DC",
+    "latitude": 38.8867,
+    "longitude": -76.9894
+  },
+  {
+    "zipCodeValue": "20003",
+    "city": "Washington",
+    "state": "DC",
+    "latitude": 38.8857,
+    "longitude": -76.9889
+  },
+  {
+    "zipCodeValue": "20004",
+    "city": "Washington",
+    "state": "DC",
+    "latitude": 38.8887,
+    "longitude": -77.0009
+  },
+  {
+    "zipCodeValue": "20005",
+    "city": "Washington",
+    "state": "DC",
+    "latitude": 38.9037,
+    "longitude": -77.0219
+  },
+  {
+    "zipCodeValue": "30001",
+    "city": "Atlanta",
+    "state": "GA",
+    "latitude": 33.749,
+    "longitude": -84.388
+  },
+  {
+    "zipCodeValue": "30002",
+    "city": "Atlanta",
+    "state": "GA",
+    "latitude": 33.749,
+    "longitude": -84.388
+  },
+  {
+    "zipCodeValue": "30003",
+    "city": "Atlanta",
+    "state": "GA",
+    "latitude": 33.749,
+    "longitude": -84.388
+  },
+  {
+    "zipCodeValue": "30004",
+    "city": "Atlanta",
+    "state": "GA",
+    "latitude": 33.749,
+    "longitude": -84.388
+  },
+  {
+    "zipCodeValue": "30005",
+    "city": "Atlanta",
+    "state": "GA",
+    "latitude": 33.749,
+    "longitude": -84.388
+  },
+  {
+    "zipCodeValue": "40001",
+    "city": "Louisville",
+    "state": "KY",
+    "latitude": 38.2527,
+    "longitude": -85.7585
+  },
+  {
+    "zipCodeValue": "40002",
+    "city": "Louisville",
+    "state": "KY",
+    "latitude": 38.2527,
+    "longitude": -85.7585
+  },
+  {
+    "zipCodeValue": "40003",
+    "city": "Louisville",
+    "state": "KY",
+    "latitude": 38.2527,
+    "longitude": -85.7585
+  },
+  {
+    "zipCodeValue": "40004",
+    "city": "Louisville",
+    "state": "KY",
+    "latitude": 38.2527,
+    "longitude": -85.7585
+  },
+  {
+    "zipCodeValue": "40005",
+    "city": "Louisville",
+    "state": "KY",
+    "latitude": 38.2527,
+    "longitude": -85.7585
+  }
+]

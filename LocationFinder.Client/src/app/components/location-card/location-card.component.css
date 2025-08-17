@@ -1,0 +1,484 @@
+/* ========================================
+   LOCATION CARD COMPONENT STYLES
+   ======================================== */
+
+.location-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 2px 8px var(--shadow-light);
+  transition: all var(--transition-base);
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.location-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--success-color) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px var(--shadow-medium);
+  border-color: var(--primary-light);
+}
+
+.location-card:hover::before {
+  opacity: 1;
+}
+
+/* ========================================
+   CARD HEADER
+   ======================================== */
+.location-card-header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  position: relative;
+}
+
+.location-name {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.location-name::before {
+  content: '🏢';
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.distance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.distance-badge.close {
+  background: rgba(70, 180, 80, 0.15);
+  color: var(--success-color);
+  border: 1px solid rgba(70, 180, 80, 0.3);
+}
+
+.distance-badge.medium {
+  background: rgba(255, 185, 0, 0.15);
+  color: #856404;
+  border: 1px solid rgba(255, 185, 0, 0.3);
+}
+
+.distance-badge.far {
+  background: rgba(220, 50, 50, 0.15);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 50, 50, 0.3);
+}
+
+.distance-badge::before {
+  content: '📍';
+  font-size: 0.75rem;
+}
+
+/* ========================================
+   CARD BODY
+   ======================================== */
+.location-card-body {
+  padding: var(--spacing-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.location-address {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.location-address::before {
+  content: '📍';
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.location-phone {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.location-phone::before {
+  content: '📞';
+  font-size: 0.875rem;
+}
+
+.location-phone:hover {
+  color: var(--primary-dark);
+  transform: translateX(2px);
+}
+
+.location-phone:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+.location-hours {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.location-hours::before {
+  content: '🕒';
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ========================================
+   CARD FOOTER
+   ======================================== */
+.location-card-footer {
+  padding: var(--spacing-lg);
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.btn-call,
+.btn-directions {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  min-height: 40px;
+}
+
+.btn-call {
+  background: var(--success-color);
+  color: var(--text-light);
+  border: 1px solid var(--success-color);
+}
+
+.btn-call::before {
+  content: '📞';
+  font-size: 0.875rem;
+}
+
+.btn-call:hover {
+  background: #3d9e47;
+  border-color: #3d9e47;
+  color: var(--text-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(70, 180, 80, 0.3);
+}
+
+.btn-directions {
+  background: var(--primary-color);
+  color: var(--text-light);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-directions::before {
+  content: '🗺️';
+  font-size: 0.875rem;
+}
+
+.btn-directions:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: var(--text-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 115, 170, 0.3);
+}
+
+.btn-call:focus,
+.btn-directions:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Extra Small devices (320px and up) */
+@media (min-width: 320px) {
+  .location-card-header,
+  .location-card-body,
+  .location-card-footer {
+    padding: var(--spacing-md);
+  }
+
+  .location-name {
+    font-size: 1rem;
+  }
+
+  .location-name::before {
+    font-size: 0.875rem;
+  }
+
+  .distance-badge {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs);
+  }
+
+  .btn-call,
+  .btn-directions {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
+}
+
+/* Small devices (576px and up) */
+@media (min-width: 576px) {
+  .location-card-header,
+  .location-card-body,
+  .location-card-footer {
+    padding: var(--spacing-lg);
+  }
+
+  .location-name {
+    font-size: 1.125rem;
+  }
+
+  .location-name::before {
+    font-size: 1rem;
+  }
+
+  .distance-badge {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .btn-call,
+  .btn-directions {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    min-height: 40px;
+  }
+}
+
+/* Medium devices (768px and up) */
+@media (min-width: 768px) {
+  .location-card-footer {
+    flex-direction: row;
+  }
+
+  .btn-call,
+  .btn-directions {
+    flex: 1;
+  }
+}
+
+/* ========================================
+   IFRAME SPECIFIC ADJUSTMENTS
+   ======================================== */
+
+/* Very small iframe (300px and below) */
+@media (max-width: 300px) {
+  .location-card {
+    border-radius: var(--border-radius-lg);
+  }
+
+  .location-card-header,
+  .location-card-body,
+  .location-card-footer {
+    padding: var(--spacing-sm);
+  }
+
+  .location-name {
+    font-size: 0.875rem;
+  }
+
+  .location-name::before {
+    font-size: 0.75rem;
+  }
+
+  .distance-badge {
+    font-size: 0.6875rem;
+    padding: 2px var(--spacing-xs);
+  }
+
+  .location-address,
+  .location-phone,
+  .location-hours {
+    font-size: 0.75rem;
+  }
+
+  .btn-call,
+  .btn-directions {
+    padding: var(--spacing-xs);
+    font-size: 0.6875rem;
+    min-height: 32px;
+  }
+
+  .location-card-footer {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+}
+
+/* Small iframe (400px and below) */
+@media (max-width: 400px) {
+  .location-card-header,
+  .location-card-body,
+  .location-card-footer {
+    padding: var(--spacing-md);
+  }
+
+  .location-name {
+    font-size: 1rem;
+  }
+
+  .location-name::before {
+    font-size: 0.875rem;
+  }
+
+  .distance-badge {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs);
+  }
+
+  .location-address,
+  .location-phone,
+  .location-hours {
+    font-size: var(--font-size-sm);
+  }
+
+  .btn-call,
+  .btn-directions {
+    padding: var(--spacing-sm);
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.location-card {
+  animation: cardFadeIn 0.4s ease-out;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .location-card {
+    animation: none;
+  }
+
+  .location-card:hover {
+    transform: none;
+  }
+
+  .location-phone:hover {
+    transform: none;
+  }
+
+  .btn-call:hover,
+  .btn-directions:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .location-card {
+    border: 2px solid var(--text-primary);
+  }
+
+  .location-card::before {
+    background: var(--primary-color);
+  }
+
+  .btn-call,
+  .btn-directions {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .location-card {
+    box-shadow: none;
+    border: 1px solid #000;
+    break-inside: avoid;
+  }
+
+  .location-card::before {
+    display: none;
+  }
+
+  .location-card-footer {
+    display: none;
+  }
+
+  .btn-call,
+  .btn-directions {
+    background: none !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+}

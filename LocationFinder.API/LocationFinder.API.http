@@ -1,0 +1,6 @@
+@LocationFinder.API_HostAddress = http://localhost:5089
+
+GET {{LocationFinder.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

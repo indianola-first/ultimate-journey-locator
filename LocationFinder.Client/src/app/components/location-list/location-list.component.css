@@ -1,0 +1,619 @@
+/* ========================================
+   LOCATION LIST COMPONENT STYLES
+   ======================================== */
+
+.location-list {
+  min-height: 200px;
+  position: relative;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl) var(--spacing-lg);
+  text-align: center;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  border: 2px dashed var(--border-color);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.loading-state .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 3px;
+  border-color: var(--primary-color);
+  border-right-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state h5 {
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.loading-state p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  max-width: 300px;
+}
+
+/* ========================================
+   ERROR STATE
+   ======================================== */
+.error-state {
+  padding: var(--spacing-lg);
+}
+
+.error-state .alert {
+  border: none;
+  border-radius: var(--border-radius-lg);
+  background: linear-gradient(135deg, rgba(220, 50, 50, 0.1) 0%, rgba(220, 50, 50, 0.05) 100%);
+  border-left: 4px solid var(--danger-color);
+  box-shadow: 0 4px 12px rgba(220, 50, 50, 0.1);
+  animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-state .alert-heading {
+  color: var(--danger-color);
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.error-state .alert-heading::before {
+  content: '⚠️';
+  font-size: 1rem;
+}
+
+.error-state .bi-exclamation-triangle-fill {
+  color: var(--danger-color);
+  font-size: 1.25rem;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl) var(--spacing-lg);
+  text-align: center;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-lg);
+  border: 2px dashed var(--border-color);
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.empty-state .bi-search {
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin-bottom: var(--spacing-lg);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.empty-state h5 {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-sm);
+  max-width: 400px;
+}
+
+.empty-state .small {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+/* ========================================
+   RESULTS HEADER
+   ======================================== */
+.results-header {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 2px 8px var(--shadow-light);
+  animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.results-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.results-title .bi-geo-alt {
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.results-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin: var(--spacing-sm) 0 0 0;
+  font-style: italic;
+}
+
+.badge {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: var(--text-light);
+  font-weight: 600;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  box-shadow: 0 2px 4px rgba(0, 115, 170, 0.2);
+}
+
+/* ========================================
+   RESULTS GRID
+   ======================================== */
+.results-grid {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.results-grid .row {
+  margin: 0;
+}
+
+.results-grid .col-12,
+.results-grid .col-md-6,
+.results-grid .col-lg-4 {
+  padding: 0;
+  margin-bottom: var(--spacing-lg);
+}
+
+.results-grid .col-12:last-child,
+.results-grid .col-md-6:last-child,
+.results-grid .col-lg-4:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   RESULTS FOOTER
+   ======================================== */
+.results-footer {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.results-footer small {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Extra Small devices (320px and up) */
+@media (min-width: 320px) {
+  .loading-state,
+  .empty-state {
+    padding: var(--spacing-lg);
+  }
+
+  .loading-state .spinner-border {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .loading-state h5 {
+    font-size: 1rem;
+  }
+
+  .empty-state h5 {
+    font-size: 1.125rem;
+  }
+
+  .results-header {
+    padding: var(--spacing-md);
+  }
+
+  .results-title {
+    font-size: 1.25rem;
+  }
+
+  .results-title .bi-geo-alt {
+    font-size: 1rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .results-grid .col-12,
+  .results-grid .col-md-6,
+  .results-grid .col-lg-4 {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* Small devices (576px and up) */
+@media (min-width: 576px) {
+  .loading-state,
+  .empty-state {
+    padding: var(--spacing-xl);
+  }
+
+  .loading-state .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .loading-state h5 {
+    font-size: 1.125rem;
+  }
+
+  .empty-state h5 {
+    font-size: 1.25rem;
+  }
+
+  .results-header {
+    padding: var(--spacing-lg);
+  }
+
+  .results-title {
+    font-size: 1.375rem;
+  }
+
+  .results-title .bi-geo-alt {
+    font-size: 1.125rem;
+  }
+
+  .badge {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .results-grid .col-12,
+  .results-grid .col-md-6,
+  .results-grid .col-lg-4 {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* Medium devices (768px and up) */
+@media (min-width: 768px) {
+  .results-title {
+    font-size: 1.5rem;
+  }
+
+  .results-title .bi-geo-alt {
+    font-size: 1.25rem;
+  }
+
+  .results-grid .row {
+    margin: 0 -var(--spacing-md);
+  }
+
+  .results-grid .col-12,
+  .results-grid .col-md-6,
+  .results-grid .col-lg-4 {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+/* Large devices (992px and up) */
+@media (min-width: 992px) {
+  .results-title {
+    font-size: 1.75rem;
+  }
+
+  .results-title .bi-geo-alt {
+    font-size: 1.5rem;
+  }
+}
+
+/* ========================================
+   IFRAME SPECIFIC ADJUSTMENTS
+   ======================================== */
+
+/* Very small iframe (300px and below) */
+@media (max-width: 300px) {
+  .location-list {
+    min-height: 150px;
+  }
+
+  .loading-state,
+  .empty-state {
+    padding: var(--spacing-md);
+  }
+
+  .loading-state .spinner-border {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .loading-state h5 {
+    font-size: 0.875rem;
+    margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+  }
+
+  .loading-state p {
+    font-size: 0.75rem;
+  }
+
+  .empty-state .bi-search {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .empty-state h5 {
+    font-size: 1rem;
+  }
+
+  .empty-state p {
+    font-size: 0.75rem;
+  }
+
+  .empty-state .small {
+    font-size: 0.6875rem;
+  }
+
+  .results-header {
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .results-title {
+    font-size: 1rem;
+  }
+
+  .results-title .bi-geo-alt {
+    font-size: 0.875rem;
+  }
+
+  .results-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .badge {
+    font-size: 0.6875rem;
+    padding: 2px var(--spacing-xs);
+  }
+
+  .results-grid .col-12,
+  .results-grid .col-md-6,
+  .results-grid .col-lg-4 {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .results-footer {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+  }
+
+  .results-footer small {
+    font-size: 0.75rem;
+  }
+}
+
+/* Small iframe (400px and below) */
+@media (max-width: 400px) {
+  .location-list {
+    min-height: 180px;
+  }
+
+  .loading-state,
+  .empty-state {
+    padding: var(--spacing-lg);
+  }
+
+  .loading-state .spinner-border {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .loading-state h5 {
+    font-size: 1rem;
+  }
+
+  .loading-state p {
+    font-size: var(--font-size-sm);
+  }
+
+  .empty-state .bi-search {
+    font-size: 2.5rem;
+  }
+
+  .empty-state h5 {
+    font-size: 1.125rem;
+  }
+
+  .empty-state p {
+    font-size: var(--font-size-sm);
+  }
+
+  .results-header {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .results-title {
+    font-size: 1.125rem;
+  }
+
+  .results-title .bi-geo-alt {
+    font-size: 1rem;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .results-grid .col-12,
+  .results-grid .col-md-6,
+  .results-grid .col-lg-4 {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .loading-state,
+  .empty-state,
+  .results-header,
+  .results-grid,
+  .results-footer {
+    animation: none;
+  }
+
+  .loading-state .spinner-border {
+    animation: none;
+  }
+
+  .empty-state .bi-search {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .loading-state,
+  .empty-state {
+    border: 2px solid var(--text-primary);
+  }
+
+  .error-state .alert {
+    border-left: 4px solid var(--text-primary);
+  }
+
+  .results-header {
+    border: 2px solid var(--text-primary);
+  }
+
+  .results-footer {
+    border-top: 2px solid var(--text-primary);
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .loading-state,
+  .error-state,
+  .empty-state {
+    display: none !important;
+  }
+
+  .results-header {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+
+  .results-footer {
+    border-top: 1px solid #000;
+  }
+
+  .badge {
+    background: none !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+}

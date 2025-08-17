@@ -1,0 +1,76 @@
+<!-- Location Card Component -->
+<div class="location-card">
+  <div class="card h-100 shadow-sm">
+    <div class="card-body">
+      <!-- Header with Name and Distance -->
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <h5 class="card-title mb-0">{{ location.name }}</h5>
+        <span *ngIf="showDistance" class="badge" [class]="getDistanceBadgeClass()">
+          {{ formatDistance(location.distanceMiles) }}
+        </span>
+      </div>
+
+      <!-- Address Information -->
+      <div class="location-address mb-3">
+        <div class="d-flex align-items-start">
+          <i class="bi bi-geo-alt text-muted me-2 mt-1"></i>
+          <div>
+            <div class="address-line">{{ location.address }}</div>
+            <div class="address-line text-muted">
+              {{ location.city }}, {{ location.state }} {{ location.zipCode }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="location-contact mb-3" *ngIf="hasPhone()">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-telephone text-muted me-2"></i>
+          <a [href]="getPhoneUrl(location.phone!)" class="phone-link" title="Click to call">
+            {{ formatPhone(location.phone!) }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Business Hours -->
+      <div class="location-hours mb-3" *ngIf="hasBusinessHours()">
+        <div class="d-flex align-items-start">
+          <i class="bi bi-clock text-muted me-2 mt-1"></i>
+          <div>
+            <small class="text-muted">Hours:</small>
+            <div class="hours-text">{{ location.businessHours }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="location-actions">
+        <div class="row g-2">
+          <div class="col-6" *ngIf="hasPhone()">
+            <a
+              [href]="getPhoneUrl(location.phone!)"
+              class="btn btn-outline-primary btn-sm w-100"
+              title="Call this location"
+            >
+              <i class="bi bi-telephone me-1"></i>
+              Call
+            </a>
+          </div>
+          <div class="col-6">
+            <a
+              [href]="getMapsUrl()"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-secondary btn-sm w-100"
+              title="Open in Google Maps"
+            >
+              <i class="bi bi-map me-1"></i>
+              Directions
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

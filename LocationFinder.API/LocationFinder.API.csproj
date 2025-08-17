@@ -1,0 +1,233 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>Client\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <SpaProxyServerUrl>https://localhost:4200</SpaProxyServerUrl>
+    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <SpaProxyWorkingDirectory>$(SpaRoot)</SpaProxyWorkingDirectory>
+    <UserSecretsId>79ea5af2-ffcf-49af-9823-ffd1991e3020</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <!-- Angular Build Configuration -->
+  <PropertyGroup>
+    <AngularBuildTarget>build:prod</AngularBuildTarget>
+    <AngularTestTarget>test:headless</AngularTestTarget>
+    <AngularLintTarget>lint</AngularLintTarget>
+    <AngularBuildOutputPath>$(SpaRoot)dist\location-finder-client</AngularBuildOutputPath>
+    <AngularBuildOutputPathRelative>Client\dist\location-finder-client</AngularBuildOutputPathRelative>
+  </PropertyGroup>
+
+  <!-- Node.js and npm detection -->
+  <Target Name="CheckForNode" BeforeTargets="BuildAngular" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+  </Target>
+
+  <Target Name="CheckForNpm" BeforeTargets="BuildAngular" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="npm --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="npm is required to build this project. To continue, please install npm from https://nodejs.org/, and then restart your command prompt or IDE." />
+  </Target>
+
+  <!-- Install npm packages -->
+  <Target Name="InstallNpmPackages" BeforeTargets="BuildAngular" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Installing npm packages..." Importance="high" />
+    <Exec Command="npm install" WorkingDirectory="$(SpaRoot)" ContinueOnError="false" />
+  </Target>
+
+  <!-- Build Angular application -->
+  <Target Name="BuildAngular" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Building Angular application..." Importance="high" />
+    <Exec Command="npm run $(AngularBuildTarget)" WorkingDirectory="$(SpaRoot)" ContinueOnError="false" />
+    
+    <!-- Verify build output exists -->
+    <PropertyGroup>
+      <AngularBuildOutputExists>false</AngularBuildOutputExists>
+    </PropertyGroup>
+    <ItemGroup>
+      <AngularBuildOutput Include="$(AngularBuildOutputPath)\**\*" />
+    </ItemGroup>
+    <PropertyGroup Condition="'@(AngularBuildOutput)' != ''">
+      <AngularBuildOutputExists>true</AngularBuildOutputExists>
+    </PropertyGroup>
+    
+    <Error Condition="'$(AngularBuildOutputExists)' != 'true'" Text="Angular build failed. Expected output not found at $(AngularBuildOutputPath)" />
+    <Message Text="Angular build completed successfully." Importance="high" />
+  </Target>
+
+  <!-- Copy Angular build output to wwwroot -->
+  <Target Name="CopyAngularBuildOutput" AfterTargets="BuildAngular" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Copying Angular build output to wwwroot..." Importance="high" />
+    <ItemGroup>
+      <AngularBuildFiles Include="$(AngularBuildOutputPath)\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AngularBuildFiles)" DestinationFolder="wwwroot\%(RecursiveDir)" />
+    <Message Text="Angular build output copied to wwwroot successfully." Importance="high" />
+  </Target>
+
+  <!-- Clean Angular build output -->
+  <Target Name="CleanAngularBuildOutput" BeforeTargets="Clean">
+    <Message Text="Cleaning Angular build output..." Importance="high" />
+    <RemoveDir Directories="$(AngularBuildOutputPath)" />
+    <RemoveDir Directories="wwwroot" />
+    <Message Text="Angular build output cleaned successfully." Importance="high" />
+  </Target>
+
+  <!-- Run Angular tests -->
+  <Target Name="RunAngularTests" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Running Angular tests..." Importance="high" />
+    <Exec Command="npm run $(AngularTestTarget)" WorkingDirectory="$(SpaRoot)" ContinueOnError="false" />
+    <Message Text="Angular tests completed successfully." Importance="high" />
+  </Target>
+
+  <!-- Run Angular linting -->
+  <Target Name="RunAngularLint" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Running Angular linting..." Importance="high" />
+    <Exec Command="npm run $(AngularLintTarget)" WorkingDirectory="$(SpaRoot)" ContinueOnError="false" />
+    <Message Text="Angular linting completed successfully." Importance="high" />
+  </Target>
+
+  <!-- Development build target (includes Angular proxy) -->
+  <Target Name="BuildAngularDev" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+    <Message Text="Development build - Angular will be served via proxy" Importance="high" />
+  </Target>
+
+  <!-- Publish target for production deployment -->
+  <Target Name="PublishAngular" BeforeTargets="Publish" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Publishing Angular application..." Importance="high" />
+    
+    <!-- Ensure Angular is built for production -->
+    <CallTarget Targets="BuildAngular" />
+    
+    <!-- Copy Angular build output to publish directory -->
+    <ItemGroup>
+      <AngularBuildFiles Include="$(AngularBuildOutputPath)\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AngularBuildFiles)" DestinationFolder="$(PublishDir)\%(RecursiveDir)" />
+    
+    <Message Text="Angular application published successfully." Importance="high" />
+  </Target>
+
+  <!-- Validate Angular build output -->
+  <Target Name="ValidateAngularBuild" AfterTargets="BuildAngular" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Validating Angular build output..." Importance="high" />
+    
+    <!-- Check for required files -->
+    <PropertyGroup>
+      <IndexHtmlExists>false</IndexHtmlExists>
+      <MainJsExists>false</MainJsExists>
+      <MainCssExists>false</MainCssExists>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <IndexHtmlFiles Include="$(AngularBuildOutputPath)\index.html" />
+      <MainJsFiles Include="$(AngularBuildOutputPath)\main.*.js" />
+      <MainCssFiles Include="$(AngularBuildOutputPath)\styles.*.css" />
+    </ItemGroup>
+    
+    <PropertyGroup Condition="'@(IndexHtmlFiles)' != ''">
+      <IndexHtmlExists>true</IndexHtmlExists>
+    </PropertyGroup>
+    <PropertyGroup Condition="'@(MainJsFiles)' != ''">
+      <MainJsExists>true</MainJsExists>
+    </PropertyGroup>
+    <PropertyGroup Condition="'@(MainCssFiles)' != ''">
+      <MainCssExists>true</MainCssExists>
+    </PropertyGroup>
+    
+    <Error Condition="'$(IndexHtmlExists)' != 'true'" Text="Angular build validation failed: index.html not found" />
+    <Error Condition="'$(MainJsExists)' != 'true'" Text="Angular build validation failed: main.js not found" />
+    <Error Condition="'$(MainCssExists)' != 'true'" Text="Angular build validation failed: styles.css not found" />
+    
+    <Message Text="Angular build validation completed successfully." Importance="high" />
+  </Target>
+
+  <!-- Optimize Angular build output -->
+  <Target Name="OptimizeAngularBuild" AfterTargets="CopyAngularBuildOutput" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Optimizing Angular build output..." Importance="high" />
+    
+    <!-- Copy web.config for Angular routing -->
+    <Copy SourceFiles="web.config" DestinationFolder="wwwroot\" Condition="Exists('web.config')" />
+    
+    <Message Text="Angular build optimization completed successfully." Importance="high" />
+  </Target>
+
+  <!-- Development proxy configuration -->
+  <Target Name="ConfigureDevelopmentProxy" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+    <Message Text="Configuring development proxy for Angular..." Importance="high" />
+    
+    <!-- Create proxy configuration for development -->
+    <ItemGroup>
+      <ProxyConfigContent Include="{   &quot;proxy&quot;: {     &quot;/api&quot;: {       &quot;target&quot;: &quot;https://localhost:5001&quot;,       &quot;secure&quot;: false,       &quot;changeOrigin&quot;: true,       &quot;logLevel&quot;: &quot;debug&quot;     }   } }" />
+    </ItemGroup>
+    
+    <WriteLinesToFile File="$(SpaRoot)proxy.conf.json" Lines="@(ProxyConfigContent)" Overwrite="true" />
+    
+    <Message Text="Development proxy configured successfully." Importance="high" />
+  </Target>
+
+  <!-- Clean development proxy configuration -->
+  <Target Name="CleanDevelopmentProxy" BeforeTargets="Clean">
+    <Message Text="Cleaning development proxy configuration..." Importance="high" />
+    <Delete Files="$(SpaRoot)proxy.conf.json" />
+    <Message Text="Development proxy configuration cleaned successfully." Importance="high" />
+  </Target>
+
+  <!-- Build order dependencies -->
+  <PropertyGroup>
+    <BuildDependsOn>
+      CheckForNode;
+      CheckForNpm;
+      InstallNpmPackages;
+      RunAngularLint;
+      RunAngularTests;
+      BuildAngular;
+      ValidateAngularBuild;
+      CopyAngularBuildOutput;
+      OptimizeAngularBuild;
+      $(BuildDependsOn)
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <!-- Clean order dependencies -->
+  <PropertyGroup>
+    <CleanDependsOn>
+      CleanAngularBuildOutput;
+      CleanDevelopmentProxy;
+      $(CleanDependsOn)
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <!-- Publish order dependencies -->
+  <PropertyGroup>
+    <PublishDependsOn>
+      PublishAngular;
+      $(PublishDependsOn)
+    </PublishDependsOn>
+  </PropertyGroup>
+
+</Project>

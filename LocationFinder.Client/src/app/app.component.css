@@ -1,0 +1,291 @@
+/* ========================================
+   APP COMPONENT STYLES
+   ======================================== */
+
+.app-container {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  font-family: var(--font-family-base);
+}
+
+/* ========================================
+   HEADER STYLES
+   ======================================== */
+.app-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: var(--text-light);
+  padding: var(--spacing-lg) 0;
+  box-shadow: 0 2px 8px var(--shadow-medium);
+  position: relative;
+  z-index: var(--z-sticky);
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.app-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.75rem;
+  text-shadow: 0 2px 4px var(--shadow-dark);
+  letter-spacing: -0.025em;
+}
+
+.app-title::before {
+  content: '📍';
+  margin-right: var(--spacing-sm);
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+/* ========================================
+   MAIN CONTENT STYLES
+   ======================================== */
+.app-main {
+  flex: 1;
+  padding: var(--spacing-xl) 0;
+  min-height: 300px;
+}
+
+.search-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.results-section {
+  min-height: 200px;
+}
+
+/* ========================================
+   FOOTER STYLES
+   ======================================== */
+.app-footer {
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+  padding: var(--spacing-lg) 0;
+  margin-top: auto;
+  text-align: center;
+}
+
+.app-footer small {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Extra Small devices (320px and up) */
+@media (min-width: 320px) {
+  .app-header {
+    padding: var(--spacing-md) 0;
+  }
+
+  .app-title {
+    font-size: 1.5rem;
+  }
+
+  .app-title::before {
+    font-size: 1.25rem;
+  }
+
+  .app-main {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .search-section {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* Small devices (576px and up) */
+@media (min-width: 576px) {
+  .app-header {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .app-title {
+    font-size: 1.625rem;
+  }
+
+  .app-title::before {
+    font-size: 1.375rem;
+  }
+
+  .app-main {
+    padding: var(--spacing-xl) 0;
+  }
+}
+
+/* Medium devices (768px and up) */
+@media (min-width: 768px) {
+  .app-title {
+    font-size: 1.75rem;
+  }
+
+  .app-title::before {
+    font-size: 1.5rem;
+  }
+}
+
+/* Large devices (992px and up) */
+@media (min-width: 992px) {
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .app-title::before {
+    font-size: 1.75rem;
+  }
+}
+
+/* ========================================
+   IFRAME SPECIFIC ADJUSTMENTS
+   ======================================== */
+
+/* Very small iframe (300px and below) */
+@media (max-width: 300px) {
+  .app-container {
+    min-height: 300px;
+  }
+
+  .app-header {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .app-title {
+    font-size: 1.25rem;
+  }
+
+  .app-title::before {
+    font-size: 1rem;
+  }
+
+  .app-main {
+    padding: var(--spacing-md) 0;
+    min-height: 200px;
+  }
+
+  .search-section {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .results-section {
+    min-height: 150px;
+  }
+
+  .app-footer {
+    padding: var(--spacing-md) 0;
+  }
+}
+
+/* Small iframe (400px and below) */
+@media (max-width: 400px) {
+  .app-container {
+    min-height: 350px;
+  }
+
+  .app-header {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .app-title {
+    font-size: 1.375rem;
+  }
+
+  .app-title::before {
+    font-size: 1.125rem;
+  }
+
+  .app-main {
+    padding: var(--spacing-lg) 0;
+    min-height: 250px;
+  }
+
+  .search-section {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .results-section {
+    min-height: 180px;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.app-header {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.app-main {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .app-container,
+  .app-header,
+  .app-main {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .app-header {
+    background: var(--primary-color);
+    border-bottom: 2px solid var(--text-primary);
+  }
+
+  .app-footer {
+    border-top: 2px solid var(--text-primary);
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .app-header {
+    background: none !important;
+    color: var(--text-primary) !important;
+    border-bottom: 2px solid var(--text-primary);
+  }
+
+  .app-footer {
+    border-top: 2px solid var(--text-primary);
+  }
+
+  .app-container {
+    min-height: auto;
+  }
+}
