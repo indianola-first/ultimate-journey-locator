@@ -70,6 +70,7 @@ cd LocationFinder
 ```bash
 # Override placeholder connection string in LocationFinder.API/appsettings.Development.json
 cd LocationFinder.API
+dotnet user-secrets init
 dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\\mssqllocaldb;Database=your-database;Trusted_Connection=true;MultipleActiveResultSets=true"
 ```
 
@@ -77,6 +78,7 @@ dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=(localdb)\
 ```bash
 # Override placeholder connection string in LocationFinder.API/appsettings.Development.json
 cd LocationFinder.API
+dotnet user-secrets init
 dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=your-server;Database=your-database;User ID=your-user;Password=your-password;TrustServerCertificate=true;"
 ```
 
