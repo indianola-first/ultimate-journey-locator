@@ -196,6 +196,7 @@ class Program
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false)
             .AddJsonFile("appsettings.Development.json", optional: true)
+            .AddUserSecrets<Program>(optional: true)
             .Build();
 
         var services = new ServiceCollection();
